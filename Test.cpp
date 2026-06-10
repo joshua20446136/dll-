@@ -3,7 +3,7 @@
 
 int main() {
     printf("测试开始\n");
-    HMODULE hDll = LoadLibrary(L"MyDll.dll");
+    HMODULE hDll = LoadLibraryA("MyDll.dll");  // 用 A 版本
 
     typedef int(*Func)(int, int);
     ((Func)GetProcAddress(hDll, "Add"))(10, 20);
