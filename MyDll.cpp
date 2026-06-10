@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#define REAL_DLL L"MyDll_original.dll"
+#define REAL_DLL "MyDll_original.dll"  // 去掉 L，用 ANSI
 HMODULE g_hRealDll = NULL;
 
 void Log(const char* fmt, ...) {
@@ -17,7 +17,7 @@ void Log(const char* fmt, ...) {
 }
 
 void LoadRealDll() {
-    g_hRealDll = LoadLibrary(REAL_DLL);
+    g_hRealDll = LoadLibraryA(REAL_DLL);  // 明确用 A 版本
     if (g_hRealDll) Log("[+] 加载原DLL成功");
     else Log("[-] 加载原DLL失败");
 }
